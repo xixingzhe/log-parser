@@ -5,6 +5,7 @@ import com.recallq.parseweblog.SingleResultFieldParser;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * Converts a time string from nginx' $local_time into seconds since Epoch time.
@@ -17,7 +18,7 @@ public class LocalTimeFieldParser extends SingleResultFieldParser {
     @Override
     public Object parse(String input) throws FieldParserException {
         try {
-            SimpleDateFormat format = new SimpleDateFormat(DATE_FORMAT);
+            SimpleDateFormat format = new SimpleDateFormat(DATE_FORMAT,Locale.US);
             Date d = format.parse(input);
             return d.getTime();
         } catch (ParseException ex) {
